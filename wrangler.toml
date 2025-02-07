@@ -2,3 +2,8 @@ name = "gemini"
 main = "src/worker.mjs"
 compatibility_date = "2024-09-23"
 compatibility_flags = [ "nodejs_compat" ]
+
+[[routes]]  
+pattern = "gemini.asitanokibou.site"
+custom_domain = true
+zone_id = "578ea85456cdce1b241ad8584a088313"

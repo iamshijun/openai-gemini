@@ -3,7 +3,7 @@ import { Buffer } from "node:buffer";
 export default {
   async fetch (request) {
     if (request.method === "OPTIONS") {
-      return handleOPTIONS();
+      return handleOPTIONS(request);
     }
     const errHandler = (err) => {
       console.error(err);
@@ -54,12 +54,15 @@ const fixCors = ({ headers, status, statusText }) => {
   return { headers, status, statusText };
 };
 
-const handleOPTIONS = async () => {
+const handleOPTIONS = async (request) => {
+  const requestHeaders = 
+    request.headers.get('Access-Control-Request-Headers') || 'Content-Type, Authorization';
+
   return new Response(null, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "*",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization", //"*"
+      "Access-Control-Allow-Headers": requestHeaders, //"*" 旧浏览器不支持 *
     }
   });
 };

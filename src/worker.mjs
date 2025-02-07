@@ -50,7 +50,7 @@ class HttpError extends Error {
 
 const fixCors = ({ headers, status, statusText }) => {
   headers = new Headers(headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  headers.set("Access-Control-Allow-Origin", "*"); 
   return { headers, status, statusText };
 };
 
@@ -59,7 +59,7 @@ const handleOPTIONS = async () => {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "*",
-      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization", //"*"
     }
   });
 };
